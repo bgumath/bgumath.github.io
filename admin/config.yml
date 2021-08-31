@@ -1,0 +1,55 @@
+#backend:
+  #  name: gitlab
+  #repo: kamenskm/bm-content
+  #auth_type: pkce
+  #app_id: 7cf81cf973f9cfe6ca9bc358a639f20c052fa457fdb50605710cd9e264963631
+  #api_root: https://www.math.bgu.ac.il/git/api/v4
+  #base_url: https://www.math.bgu.ac.il/git
+  #auth_endpoint: oauth/authorize
+  #branch: main # Branch to update (optional; defaults to master)
+
+backend:
+  name: git-gateway
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+publish_mode: editorial_workflow
+local_backend: true
+
+i18n:
+  structure: multiple_folders
+  locales: [en, he]
+
+collections:
+  - name: community
+    label: Community Pages
+    label_singular: Community Page
+    i18n: true
+    description: Pages related to the interaction of the department with the community
+    folder: 'src/content/community'
+    create: true
+    preview_path: "community/{{slug}}"
+    summary: "{{title}} (Version {{version}}, {{commit_author}})"
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string', i18n: true }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime', i18n: duplicate }
+      - { label: 'Body', name: 'body', widget: 'markdown', i18n: true }
+      - { label: 'Attachment', name: 'attach', widget: 'file', required: false, i18n: duplicate }
+      - { label: 'Tags', name: 'tags', widget: 'list', i18n: true }
+      - { label: 'Main Nav', name: 'nav', widget: 'boolean' }
+  - name: internal
+    label: Internal Information
+    label_singular: Internal page
+    i18n: true
+    description: Information for members of the department
+    folder: 'src/content/internal'
+    create: true
+    preview_path: "internal/{{slug}}"
+    summary: "{{title}} (Version {{version}}, {{commit_author}})"
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string', i18n: true }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime', i18n: duplicate }
+      - { label: 'Body', name: 'body', widget: 'markdown', i18n: true }
+      - { label: 'Attachment', name: 'attach', widget: 'file', required: false, i18n: duplicate }
+      - { label: 'Tags', name: 'tags', widget: 'list', i18n: true }
+      - { label: 'Main Nav', name: 'nav', widget: 'boolean' }
